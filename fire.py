@@ -106,7 +106,7 @@ def get_tree_matrix_sparse(X,tree1):
     toadd = pd.DataFrame(np.column_stack((np.zeros(len(setdiff)),setdiff,np.zeros(len(setdiff)))),
                         columns = ['instance','node','value'])
     #df = df.append(toadd)
-    df = pd.concat([df, toadd, ignore_index=True)
+    df = pd.concat([df, toadd], ignore_index=True)
     matrix_temp = pd.pivot_table(df, index = 'instance',columns = 'node',values = 'value').fillna(0)
     return csc_matrix(matrix_temp.values), matrix_temp.columns.values
 
